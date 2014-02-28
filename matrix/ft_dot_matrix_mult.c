@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_matrix.c                                 :+:      :+:    :+:   */
+/*   ft_dot_matrix_mult.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/26 14:24:21 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/02/28 10:37:43 by vlehuger         ###   ########.fr       */
+/*   Created: 2014/02/28 10:45:47 by vlehuger          #+#    #+#             */
+/*   Updated: 2014/02/28 10:54:29 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include <libft3d.h>
 
-double		**ft_create_matrix(void)
+t_dot		*ft_dot_matrix_mult(t_dot *dot, double **mat)
 {
-	double	**matrix;
+	t_dot	*ret;
 	int		i;
 	int		j;
 
-	matrix = (double **)malloc(sizeof(double *) * 4);
-	if (matrix)
+	if ((ret = ft_create_vector(0, 0, 0)))
 	{
 		i = 0;
-		while (i < 4)
+		while (i < 3)
 		{
-			matrix[i] = (double *)malloc(sizeof(double) * 4);
-			if (matrix[i])
+			j = 0;
+			while (j < 3)
 			{
-				j = 0;
-				while (j < 4)
-				{
-					matrix[i][j] = 0;
-					j++;
-				}
+				ret->coord[i] = ret->coord[i] + mat[j][i] * dot->coord[j];
+				j++;
 			}
 			i++;
 		}
-		return (matrix);
 	}
 	return (NULL);
 }

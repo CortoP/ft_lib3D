@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_matrix.c                                 :+:      :+:    :+:   */
+/*   ft_matrix_transpose.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/26 14:24:21 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/02/28 10:37:43 by vlehuger         ###   ########.fr       */
+/*   Created: 2014/02/28 10:34:49 by vlehuger          #+#    #+#             */
+/*   Updated: 2014/02/28 10:44:16 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
-
-double		**ft_create_matrix(void)
+double		*ft_matrix_transpose(double *src)
 {
-	double	**matrix;
+	double	**mat;
 	int		i;
 	int		j;
 
-	matrix = (double **)malloc(sizeof(double *) * 4);
-	if (matrix)
+	mat = ft_create_matrix();
+	if (mat)
 	{
 		i = 0;
 		while (i < 4)
 		{
-			matrix[i] = (double *)malloc(sizeof(double) * 4);
-			if (matrix[i])
+			j = 0;
+			while (j < 4)
 			{
-				j = 0;
-				while (j < 4)
-				{
-					matrix[i][j] = 0;
-					j++;
-				}
+				mat[i][j] = src[j][i];
+				j++;
 			}
 			i++;
 		}
-		return (matrix);
+		return (mat);
 	}
 	return (NULL);
 }
